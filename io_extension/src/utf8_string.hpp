@@ -146,6 +146,7 @@ namespace wrz {
         splitString(str, target_vec, result);
     }
 
+    // examples to eliminate specific chars in string
     bool isSpacialChar(char c) {
         switch (c) {
             case ' ':

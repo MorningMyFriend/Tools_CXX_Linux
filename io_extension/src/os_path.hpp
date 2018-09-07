@@ -15,7 +15,7 @@ using namespace std;
 
 namespace wrz {
 
-    void listdir(string path, vector<string> &files) {
+    void listdir(const string &path, vector<string> &files) {
         if (path[path.size() - 1] != '/') {
             path += "/";
         }
@@ -48,7 +48,7 @@ namespace wrz {
         }
     }
 
-    bool walkdir(string path, vector<string> &subdirs, vector<string> &files) {
+    bool walkdir(const string &path, vector<string> &subdirs, vector<string> &files) {
         // if there is no dir in path, return true
         if (path[path.size() - 1] != '/') {
             path += "/";

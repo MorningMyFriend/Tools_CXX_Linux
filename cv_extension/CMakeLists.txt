@@ -1,5 +1,4 @@
 include_directories(${PROJECT_SOURCE_DIR}/cv_extension/src)
-target_link_libraries(${PROJECT_SOURCE_DIR}/lib)
 
 aux_source_directory(src SOURCE_CV_EX)
 
