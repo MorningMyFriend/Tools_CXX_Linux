@@ -95,3 +95,4 @@ namespace wrz {
 }
 
 #endif //TOOLS_CXX_LINUX_OS_PATH_H
+
