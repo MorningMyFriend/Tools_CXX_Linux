@@ -15,10 +15,10 @@ using namespace std;
 
 namespace wrz {
 
-    int utf8_len(const string &str) {
+    string::size_type utf8_len(const string &str) {
         if (str.size() < 1) return 0;
         int count = 0;
-        for (int i = 0; i < str.size(); ++i) {
+        for (string::size_type i = 0; i != str.size(); ++i) {
             if ((str[i] & 0x80) == 0) {
                 char english[2] = {0};
                 count++;
@@ -44,7 +44,7 @@ namespace wrz {
         }
 
         int count = -1;
-        for (int i = 0; i < str.size(); ++i) {
+        for (string::size_type i = 0; i != str.size(); ++i) {
             string result;
             if ((str[i] & 0x80) == 0) {
                 char english[2] = {0};
@@ -67,24 +67,24 @@ namespace wrz {
         }
     }
 
-    string utf8_substr(const string &str, int start, int len) {
+    string utf8_substr(const string &str, const string::size_type &start, const string::size_type &len) {
         int maxlen = utf8_len(str);
         if (start + len > maxlen || len < 0) {
             return "";
         }
 
         string result = "";
-        for (int i = start; i < len + start; ++i) {
+        for (string::size_type i = start; i != len + start; ++i) {
             result += utf8_at(str, i);
         }
         return result;
     }
 
-    int utf8_find_first_of(const string &str, const string &target) {
-        int index = -1;
+    string::size_type utf8_find_first_of(const string &str, const string &target) {
+        string::size_type index = -1;
         if (str.size() < 1) return -1;
 
-        for (int i = 0; i < utf8_len(str); ++i) {
+        for (string::size_type i = 0; i != utf8_len(str); ++i) {
             if (utf8_at(str, i) == target) {
                 index++;
                 return index;
@@ -108,7 +108,7 @@ namespace wrz {
         }
 
         string temp = "";
-        for (int i = 0; i < utf8_len(str); ++i) {
+        for (string::size_type i = 0; i != utf8_len(str); ++i) {
             string str_i = utf8_at(str, i);
             auto itr = std::find(targets.begin(), targets.end(), str_i);
             if (itr == targets.end()) {
@@ -140,7 +140,7 @@ namespace wrz {
         }
 
         vector<string> target_vec;
-        for (int i = 0; i < utf8_len(target); ++i) {
+        for (string::size_type i = 0; i < utf8_len(target); ++i) {
             target_vec.emplace_back(utf8_at(target, i));
         }
         splitString(str, target_vec, result);
