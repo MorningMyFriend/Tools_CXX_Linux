@@ -37,6 +37,35 @@ void test_perspective(){
     waitKey(0);
 }
 
+void test_rotateRect(){
+    Mat image = cv::imread("../../data/rotateRect.png");
+    Mat gray,binary;
+    cv::cvtColor(image, gray, cv::COLOR_BGR2GRAY);
+    cv::threshold(gray, binary, 125, 255, cv::THRESH_BINARY);
+    cv::imshow("binary", binary);
+//    cv::waitKey(0);
+
+    // find contours
+    vector<vector<Point2f>> contours;
+    vector<Vec4i> hierachy;
+    cv::findContours(binary, contours, hierachy, cv::RETR_CCOMP, cv::CHAIN_APPROX_NONE);
+    for (int i = 0; i < contours.size(); ++i) {
+        cv::drawContours(image, contours, i, Scalar(0,255,0), 2);
+    }
+    cv::imshow("contours", image);
+    cv::waitKey(0);
+
+    // rotateRect
+    vector<cv::RotatedRect> rects;
+    for (int i = 0; i < contours.size(); ++i) {
+        cv::RotatedRect rotatedRect = cv::minAreaRect(contours.at(i));
+        Point2f center = rotatedRect.center;
+        Size size = rotatedRect.size;
+        float ang = rotatedRect.angle;
+    }
+}
+
+
 int main(){
     test_perspective();
 }
