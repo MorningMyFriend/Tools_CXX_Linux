@@ -5,6 +5,7 @@
 #include <iostream>
 #include <math.h>
 #include "image_process.h"
+#include "cvRotatedRect_ex.h"
 
 using namespace std;
 using namespace cv;
@@ -46,26 +47,34 @@ void test_rotateRect(){
 //    cv::waitKey(0);
 
     // find contours
-    vector<vector<Point2f>> contours;
+    vector<vector<Point>> contours;
     vector<Vec4i> hierachy;
     cv::findContours(binary, contours, hierachy, cv::RETR_CCOMP, cv::CHAIN_APPROX_NONE);
     for (int i = 0; i < contours.size(); ++i) {
         cv::drawContours(image, contours, i, Scalar(0,255,0), 2);
     }
     cv::imshow("contours", image);
-    cv::waitKey(0);
+//    cv::waitKey(0);
 
     // rotateRect
     vector<cv::RotatedRect> rects;
-    for (int i = 0; i < contours.size(); ++i) {
+    for (int i = 1; i < contours.size(); ++i) {
         cv::RotatedRect rotatedRect = cv::minAreaRect(contours.at(i));
         Point2f center = rotatedRect.center;
         Size size = rotatedRect.size;
         float ang = rotatedRect.angle;
+
+        char buffer[255];
+        sprintf(buffer, "w:%d  h:%d  ang:%f",size.width, size.height, ang);
+        cout << buffer << endl;
+
+        Mat cropImg;
+        cv_ex::CropRotatedRectFromImg(image, rotatedRect, cropImg);
     }
 }
 
 
 int main(){
-    test_perspective();
+//    test_perspective();
+    test_rotateRect();
 }

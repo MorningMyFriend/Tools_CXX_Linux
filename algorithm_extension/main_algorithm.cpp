@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include "union.hpp"
+#include "lcs.h"
 
 using namespace std;
 using namespace wrz;
@@ -28,6 +29,14 @@ void union_test() {
 
 }
 
+void test_lcs(){
+    string s1 = "ABCBDAB";
+    string s2 = "BDCABA";
+    string result = LCS(s1, s2);
+    cout << result << endl;
+}
+
 int main() {
-    union_test();
+//    union_test();
+    test_lcs();
 }
