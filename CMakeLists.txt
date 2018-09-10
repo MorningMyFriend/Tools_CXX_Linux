@@ -7,8 +7,8 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
 # 选择要编译的功能模块
 option(ALGORITHM_EXTENSION "if build algorithm_extension module" ON)
-option(CV_EXTENSION "if build cv_extension module" OFF)
-option(DATA_EXTENSION "if build data_extension module" OFF)
+option(CV_EXTENSION "if build cv_extension module" ON)
+option(DATA_EXTENSION "if build data_extension module" ON)
 option(IO_EXTENSION "if build io_extension module" ON)
 option(DESIGN_PATTERN "if build design patterns example" ON)
 
