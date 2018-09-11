@@ -21,28 +21,10 @@
 
 namespace cv_ex{
     using namespace cv;
-    void CropRotatedRectFromImg(const cv::Mat &image, const cv::RotatedRect &rotatedRect, cv::Mat &cropImg){
-        Mat imgshow = image.clone();
-        cv::rectangle(imgshow, rotatedRect.boundingRect(), Scalar(0,255,0),2);
-        cv::imshow("org", imgshow);
 
-        cv::Point newCenter = static_cast<cv::Point>(rotatedRect.center)-rotatedRect.boundingRect().tl();
-        cv::Mat r = cv::getRotationMatrix2D(newCenter, rotatedRect.angle, 1);
-        cv::Mat img, newImg;
+    void CropRotatedRectFromImg(const cv::Mat &image, const cv::RotatedRect &rotatedRect, cv::Mat &cropImg);
 
-        cv::Rect bounding = rotatedRect.boundingRect();
-        cv_ex::ValidateRect(image, bounding);
-        img = image(bounding).clone();
-
-        cv::warpAffine(img, newImg, r, rotatedRect.boundingRect().size(), cv::INTER_CUBIC);
-
-        cv::Rect orgRect(newCenter-Point(rotatedRect.size.width/2, rotatedRect.size.height/2), rotatedRect.size);
-        cv_ex::ValidateRect(newImg, orgRect);
-        cropImg = newImg(orgRect);
-        cv::imshow("", cropImg);
-        cv::waitKey();
-    }
-
+    bool IsContainPt(const cv::RotatedRect &rotatedRect, const cv::Point2f &pt);
 }
 
 
