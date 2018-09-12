@@ -11,6 +11,7 @@ option(CV_EXTENSION "if build cv_extension module" ON)
 option(DATA_EXTENSION "if build data_extension module" ON)
 option(IO_EXTENSION "if build io_extension module" ON)
 option(DESIGN_PATTERN "if build design patterns example" ON)
+option(TOOLS "if build tools example" ON)
 
 if(ALGORITHM_EXTENSION)
     add_subdirectory(algorithm_extension)
@@ -32,4 +33,8 @@ endif()
 
 if (DESIGN_PATTERN)
     add_subdirectory(design_pattern)
+endif()
+
+if (TOOLS)
+    add_subdirectory(tools)
 endif()
