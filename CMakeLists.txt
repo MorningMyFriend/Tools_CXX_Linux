@@ -18,8 +18,9 @@ if(ALGORITHM_EXTENSION)
 endif()
 
 if (CV_EXTENSION)
-    set(OpenCV_DIR /home/wurui/opencv/opencv-3.3.0/distribute)
-    find_package(OpenCV 3.3.0 REQUIRED)
+    set(OpenCV_DIR /home/cuizhou/Downloads/opencv-3.3.0/distribute/share/OpenCV)
+    find_package(OpenCV REQUIRED)
+    message("OpenCV_INCLUDE_DIRS: ${OpenCV_INCLUDE_DIRS}")
     add_subdirectory(cv_extension)
 endif ()
 

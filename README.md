@@ -3,6 +3,7 @@
 
 ## 1. algorithm_extension
 - Union: quick union algorithm
+- LCS
 
 ## 2. cv_extension
 - cv::Rect
@@ -11,6 +12,7 @@
 - cv::perspective and polynomial transform
 
 ## 2. data_extension
+- deal with STL containers
 
 ## 3. design_pattern
 - producer consumer

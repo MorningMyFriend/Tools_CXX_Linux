@@ -54,12 +54,14 @@ void test_rotateRect(){
         cv::drawContours(image, contours, i, Scalar(0,255,0), 2);
     }
     cv::imshow("contours", image);
-//    cv::waitKey(0);
+    cv::waitKey(0);
 
     // rotateRect
     vector<cv::RotatedRect> rects;
     for (int i = 1; i < contours.size(); ++i) {
         cv::RotatedRect rotatedRect = cv::minAreaRect(contours.at(i));
+        rects.emplace_back(rotatedRect);
+
         Point2f center = rotatedRect.center;
         Size size = rotatedRect.size;
         float ang = rotatedRect.angle;
@@ -69,8 +71,13 @@ void test_rotateRect(){
         cout << buffer << endl;
 
         Mat cropImg;
-        cv_ex::CropRotatedRectFromImg(image, rotatedRect, cropImg);
+//        cv_ex::CropRotatedRectFromImg(image, rotatedRect, cropImg);
+
     }
+
+    Point2f pts[4];
+    rects.at(2).points(pts);
+    cv_ex::IsContainPt(rects.at(2), pts[0]);
 }
 
 
